@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lejeboliger</title>
+    <link rel="stylesheet" href="styles/mystyle.css">
+</head>
+
+<body>
+    <h1>Find din næste lejebolig</h1>
+    <div class="header">
+     <div>
+        <button type="button" class="button" id="addGuitarButton">Tilføj lejere</button>
+        <button type="button" class="button" id="showAlllejlihederButton">Vis alle lejere</button>
+      </div>
+     <form id="snSearchForm">
+          <input type="search" id="snField" class="inputField"
+          placeholder="Search serial number" required>
+         <button type="submit" class="button">Search</button>
+    </form>
+</div>
+ 
+<!--panel starts here-->
+<aside class="searchPanel" id="searchPanel">
+    <span class="panelText" id="panelText">A D V A N C E D&nbsp;&nbsp; S E A R C H </span>
+    <form id="searchForm" class="searchForm">
+        <div class="closeCross" id="closeCross">X</div>
+
+        <label class="searchFormlabel" for="lejlighedsnr"> Lejlighedsnummer</label>
+        <input type="text" id="lejlighedsnr" class="searchFormField">
+
+        <label class="searchFormlabel" for="lejere"> Lejere</label>
+        <input type="text" id="lejere" class="searchFormField">
+
+        <label class="searchFormlabel" for="indflytningsdato">Indflytningsdato</label>
+        <input type="text" id="indflytningsdato" class="searchFormField">
+
+        <label class="searchFormlabel" for="husleje">husleje</label>
+        <input type="text" id="husleje" class="searchFormField">
+        
+        <label class="searchFormlabel" for="indskud">Indskud</label>
+        <input type="text" id="indskud" class="searchFormField">
+
+        <br><br>
+
+        <div class="searchFormPanel">
+            <button type="reset" class="searchFormButton">Reset</button>
+            <button type="submit" class="searchFormButton">Apply</button>
+        </div>
+    </form>
+</aside>
+<!--panel ends here-->
+
+<!--Add guitar dialog-->
+<dialog id="guitarDialog">
+    <form method="dialog" id="guitarDialogForm">
+        <fieldset>
+            <legend>Add new Guitar</legend>
+
+            <label for="lejlighedsnummerfield">Lejlighedsnummer:</label><input type="text" class="inputField dialogField" id="lejlighedsnummerfield" placeholder="Skriv lejlighedsnummer" required>
+
+            <label for="lejerefield">Lejere:</label><input type="text" class="inputField dialogField" id="lejerefield" placeholder="Skriv lejerens navn" required>
+
+            <label for="indflytningfield">Indflytningsdato:</label><input type="text" class="inputField dialogField" id="indflytningfield" placeholder="Indflytningsdato" required>
+
+            <label for="huslejefield">Husleje:</label><input type="text" class="inputField dialogField" id="huslejefield" placeholder="huslejefield" required>
+
+            <label for="indskudfield">Indskud:</label><input type="text" class="inputField dialogField" id="indskudfield" placeholder="Indskud betalt" required>
+
+            <br><br>
+
+            <div class="dialogBtnsPanel">
+                <button type="button" id="cancelButton" class="button">Cancel</button>
+                <button type="submit" id="saveButton" class="button">Save</button>
+            </div>
+        </fieldset>
+    </form>
+</dialog>
+
+<!--Add guitar dialog end-->
+
+<!--Delete confirmation starts here-->
+<dialog id="confirmDialog">
+    <form method="dialog" id="confirmDialogForm">
+        <fieldset>
+            <legend>Delete guitar?</legend>
+            Do you really want to delete guitar?
+            <br><br>
+            <div class="dialogBtnsPanel">
+                <button type="submit" class="button">yes</button>
+                <button type="button" class="button" id="cancelConfirmBtn">No</button>
+            </div>
+
+        </fieldset>
+    </form>
+
+</dialog>
+<!--Delete confirmation ends here-->
+
+<!--Hidden field-->
+<form>
+    <input type="hidden" id="hiddenSnField">
+</form>
+<!--Hidden ends-->
+
+
+<!-- <table class="tablelist">
+    <thead>
+        <tr>
+            <th>Lejlighedsnummer</th>
+            <th>Lejere</th>
+            <th>Indflytningsdato</th>
+            <th>Husleje</th>
+            <th>Indskud</th>
+            <th>Slet</th>
+        </tr>
+    </thead>
+    <tbody id="searchResult"></tbody>
+</table> -->
+<div id="searchResult"></div>
+
+<div id="snackbar">Some message will arive here</div>
+
+<script type="module">
+    import Model from "./models/model.js"
+    import Controller from "./controllers/controller.js"
+    import View from "./views/view.js"
+
+    window.onload = function (){
+        const model = new Model();
+        const controller = new Controller();
+        const view = new View(controller);
+        controller.initialize(model, view);
+    }
+</script>
+ 
+
+</body>
+
+</html>
